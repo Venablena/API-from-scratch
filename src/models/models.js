@@ -10,24 +10,26 @@ function create(body) {
   const errors = []
 
   let response
-  if(!model) {
-    errors.push('model is required')
-    response = {errors}
-  }else if(!color) {
-    errors.push('color is required')
-    response = {errors}
-  } else {
+  if(!model) errors.push('model is required')
+  // if(!colors) errors.push('color is required')
+  // if(!size) errors.push('size is required')
+  // if(!room) errors.push('room is required')
+
+  if (errors.length > 0) response = {errors}
+  else {
     const curtain = { id: uuid(), model, color }
     //, size, room
     curtains.push(curtain)
     response = curtain
   }
+  // if(!model) {
+  //   errors.push('model is required')
+  //   response = {errors}
+  // } else if(!color) {
+  //   errors.push('color is required')
+  //   response = {errors}
+
   return response
-  // if(!size) errors.push('size is required')
-  // if(!room) errors.push('room is required')
-
-  //if (errors.length > 0) response = {errors}
-
 }
 
 function getAll(curtains){
