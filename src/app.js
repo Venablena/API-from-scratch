@@ -8,7 +8,7 @@ app.disable('x-powered-by')
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-const routes = require('./src/routes/routes')
+const routes = require('./routes/routes')
 app.use('/', routes)
 
 app.use((err, req, res, next) => {
