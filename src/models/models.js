@@ -12,13 +12,13 @@ function create(body) {
   let response
   if(!model) {
     errors.push('model is required')
-    response = errors
+    //response = { errors }
   }
   // if(!colors) errors.push('color is required')
   // if(!size) errors.push('size is required')
   // if(!room) errors.push('room is required')
 
-  //if (errors.length > 0) response = {errors}
+  if (errors.length > 0) response = {errors}
   else {
     const curtain = { id: uuid(), model }
     //, color, size, room
