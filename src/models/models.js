@@ -4,13 +4,18 @@ const curtains = []
 function create(body) {
   const errors = checkParams(body)
   let response
-
   if (errors.length > 0) response = {errors}
-  else {
-    const curtain = { id: uuid(), model, color, size, room }
-    curtains.push(curtain)
-    response = curtain
-  }
+  else response = createItem(body)
+  // else {
+  //   const model = body.model
+  //   const color = body.color
+  //   const size = body.size
+  //   const room = body.room
+  //
+  //   const curtain = { id: uuid(), model, color, size, room }
+  //   curtains.push(curtain)
+  //   response = curtain
+  // }
   return response
 }
 
@@ -46,10 +51,10 @@ function checkParams(body) {
   return errors
 }
 
-// function createItem() {
-//   const item = { id: uuid(), model, color, size, room }
-//   curtains.push(curtain)
-//   response = curtain
-// }
+function createItem(body) {
+  const itemArray = []
+  const item = { id: uuid(), model: body.model, color: body.color, size: body.size, room: body.room }
+  return itemArray.push(item)
+}
 
 module.exports = {getAll, create, checkId}
