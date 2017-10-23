@@ -6,21 +6,21 @@ function create(body) {
   let response
   if (errors.length > 0) response = {errors}
   else response = createItem(body)
-  // else {
-  //   const model = body.model
-  //   const color = body.color
-  //   const size = body.size
-  //   const room = body.room
-  //
-  //   const curtain = { id: uuid(), model, color, size, room }
-  //   curtains.push(curtain)
-  //   response = curtain
-  // }
+// } else {
+//     const model = body.model
+//     const color = body.color
+//     const size = body.size
+//     const room = body.room
+//
+//     const curtain = { id: uuid(), model, color, size, room }
+//     curtains.push(curtain)
+//     response = curtain
+//   }
   return response
 }
 
-function getAll(curtains){
-    console.log(curtains);
+function getAll(items){
+    // console.log(curtains);
     return curtains
 }
 
@@ -52,9 +52,10 @@ function checkParams(body) {
 }
 
 function createItem(body) {
-  const itemArray = []
-  const item = { id: uuid(), model: body.model, color: body.color, size: body.size, room: body.room }
-  return itemArray.push(item)
+  // const itemArray = []
+  const item = { id: uuid(), model: body.model, color: body.color, size: body.size, room: body.room}
+  curtains.push(item)
+  return item
 }
 
 module.exports = {getAll, create, checkId}
