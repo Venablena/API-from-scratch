@@ -3,24 +3,11 @@ const curtains = []
 
 function create(body) {
   const errors = checkParams(body)
-  let response
-  if (errors.length > 0) response = {errors}
-  else response = createItem(body)
-// } else {
-//     const model = body.model
-//     const color = body.color
-//     const size = body.size
-//     const room = body.room
-//
-//     const curtain = { id: uuid(), model, color, size, room }
-//     curtains.push(curtain)
-//     response = curtain
-//   }
-  return response
+  if (errors.length > 0) return { errors }
+  else return createItem(body)
 }
 
 function getAll(items){
-    // console.log(curtains);
     return curtains
 }
 
@@ -29,10 +16,8 @@ function getAll(items){
 // Helper functions
 ////////////////////////////////////////
 
-function checkId(req, res, next) {
-  const id = req.params.id
-  const match = curtains.find(item => item.id === id)
-  if(!match) return next({status: 404, message: `Could not find item with the id ${id}`})
+function checkId(id) {
+  return curtains.find(item => item.id === id)
 }
 
 function checkParams(body) {
@@ -52,7 +37,6 @@ function checkParams(body) {
 }
 
 function createItem(body) {
-  // const itemArray = []
   const item = { id: uuid(), model: body.model, color: body.color, size: body.size, room: body.room}
   curtains.push(item)
   return item
