@@ -16,8 +16,14 @@ function getAll(items){
 // Helper functions
 ////////////////////////////////////////
 
+// function checkId(id) {
+//   return curtains.find(item => item.id === id)
+// }
+
 function checkId(id) {
-  return curtains.find(item => item.id === id)
+  const match = curtains.find(item => item.id === id)
+  if(!match) return {error: { status: 404, message: `Could not find item with the id ${id}`}}
+  return match
 }
 
 function checkParams(body) {

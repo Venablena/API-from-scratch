@@ -13,10 +13,21 @@ function create (req, res, next) {
   res.status(201).json({ data: result })
 }
 
-function getOne (req, res, next){
+function getOne (req, res, next) {
   const data = model.checkId(req.params.id)
-  if(!data) return next({ status: 404, message: `Could not find item with this id`})
+  //console.log(data);
+  if(data.error) return next(data.error)
   res.json(data)
 }
 
-module.exports = { getAll, create, getOne }
+function update (req, res, next) {
+  const data = model.checkId(req.params.id)
+  if(!data) return next({ status: 404, message: `Could not find item with this id`})
+}
+
+function deleteOne (req, res, next) {
+  const data = model.checkId(req.params.id)
+  if(!data) return next({ status: 404, message: `Could not find item with this id`})
+}
+
+module.exports = { getAll, create, getOne, update, deleteOne }
