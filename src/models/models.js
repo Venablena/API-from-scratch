@@ -4,21 +4,30 @@ const curtains = []
 function create(body) {
   const errors = checkParams(body)
   if (errors.length > 0) return { errors }
-  else return createItem(body)
+  return createItem(body)
 }
 
-function getAll(items){
+function getAll(items) {
     return curtains
 }
 
+function deleteOne(curtain) {
+  const index = indexOf(curtain)
+  return curtains.splice(index, 1)
+}
+
+function update(body, id) {
+  const errors = checkParams(body)
+  if (errors.length > 0) return { errors }
+  return updateItem(body, id)
+  // const index = indexOf(body)
+  // curtains[index].
+  //return curtains.splice(index, 1)
+}
 
 /////////////////////////////////////////
 // Helper functions
 ////////////////////////////////////////
-
-// function checkId(id) {
-//   return curtains.find(item => item.id === id)
-// }
 
 function checkId(id) {
   const match = curtains.find(item => item.id === id)
@@ -48,4 +57,12 @@ function createItem(body) {
   return item
 }
 
-module.exports = {getAll, create, checkId}
+function updateItem(body, id) {
+  const item = { id: id, model: body.model, color: body.color, size: body.size, room: body.room}
+  const match = curtains.find(curtain => curtain.id === id)
+  const index = curtains.indexOf(match)
+  curtains[index] = item
+  return curtains[index]
+}
+
+module.exports = {getAll, create, checkId, update, deleteOne}
