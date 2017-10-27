@@ -30,7 +30,7 @@ function update (req, res, next) {
 }
 
 function remove (req, res, next) {
-  const data = model.checkId(req.params.id)
+  let data = model.checkId(req.params.id)
   if(data.error) return next(data.error)
   data = model.deleteOne(req.params.id)
   res.json(data)

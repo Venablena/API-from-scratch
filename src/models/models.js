@@ -1,3 +1,5 @@
+//This is sloppy, I'm using the find id too many times throuhgout. Could refactor if I find some time...at least it works now :)!
+
 const uuid = require('uuid')
 const curtains = []
 
@@ -12,7 +14,8 @@ function getAll(items) {
 }
 
 function deleteOne(curtain) {
-  const index = indexOf(curtain)
+  const match = curtains.find(item => item.id === curtain)
+  const index = curtains.indexOf(curtain)
   return curtains.splice(index, 1)
 }
 
@@ -20,9 +23,6 @@ function update(body, id) {
   const errors = checkParams(body)
   if (errors.length > 0) return { errors }
   return updateItem(body, id)
-  // const index = indexOf(body)
-  // curtains[index].
-  //return curtains.splice(index, 1)
 }
 
 /////////////////////////////////////////
